@@ -8,7 +8,7 @@ build_script:
   - mingw32-make
   
 artifacts:
-  - path: release\deploy
+  - path: Datalogger\release\deploy
     name: windows
   
 after_build:
