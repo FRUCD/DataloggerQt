@@ -1,0 +1,19 @@
+init:
+ - set QTDIR=C:\Qt\5.9.2\mingw53_32
+ - set PATH=%PATH%;%QTDIR%\bin;C:\Qt\Tools\mingw530_32\bin
+ 
+build_script:
+  - cd Datalogger
+  - qmake Datalogger.pro
+  - mingw32-make
+  
+artifacts:
+  - path: release\deploy
+    name: windows
+  
+after_build:
+    - cd release
+    - mkdir deploy
+    - copy Datalogger.exe deploy
+    - cd deploy
+    - windeployqt Datalogger.exe
