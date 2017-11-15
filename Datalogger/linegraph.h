@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QtCharts>
 #include <QtMath>
+#include <QtGui>
+#include <QWheelEvent>
 
 class LineGraph : public QWidget
 {
@@ -11,12 +13,15 @@ class LineGraph : public QWidget
 public:
     explicit LineGraph(QWidget *parent = nullptr);
     QString graphTitle;
+    QChart * chart;
+    void wheelEvent(QWheelEvent *event);
 
 protected:
     void paintEvent(QPaintEvent *);
 
 
 signals:
+
 
 public slots:
 };

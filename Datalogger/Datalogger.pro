@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    linegraph.cpp
+    linegraph.cpp \
+    testinput.cpp
 
 HEADERS += \
         mainwindow.h \
-    linegraph.h
+    linegraph.h \
+    testinput.h
 
 FORMS += \
         mainwindow.ui

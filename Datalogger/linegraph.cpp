@@ -5,23 +5,57 @@
 LineGraph::LineGraph(QWidget *parent) : QWidget(parent)
 {
     graphTitle = "No Title";
-}
 
-void LineGraph::paintEvent(QPaintEvent *)
-{
-    QChart *chart = new QChart();
+    chart = new QChart();
     chart->legend()->hide();
     chart->setTitle(graphTitle);
     QLineSeries *lineSeries = new QLineSeries();
-    for (int i = 0; i < 500; i++)
+
+    //Make random data
+    int test = 0;
+    for (int i = 0; i <= 60; i++)
     {
-        *lineSeries << QPointF(i, qPow(i, 2));
+        if(test < 1) test += rand() % 2;
+        else if (test > 5) test += 5 - rand() % 10;
+        else test += 1 - rand() % 3;
+        *lineSeries << QPointF(i,test);
     }
 
+
     chart->addSeries(lineSeries);
+    QValueAxis *axisX = new QValueAxis;
+    axisX->setTitleText("Time (Seconds)");
+    //axisX->setRange(0,60);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    lineSeries->attachAxis(axisX);
+
+    QValueAxis *axisY = new QValueAxis;
+    axisY->setTitleText("Percent Usage");
+    axisY->setRange(0,100);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    lineSeries->attachAxis(axisY);
+
     QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
     //chartView->
     QGridLayout *mainLayout = new QGridLayout;
        mainLayout->addWidget(chartView, 1, 1);
        setLayout(mainLayout);
+}
+
+void LineGraph::paintEvent(QPaintEvent *)
+{
+
+}
+
+void LineGraph::wheelEvent(QWheelEvent *event)
+{
+    QPoint numPixels = event->pixelDelta();
+    QPoint numDegrees = event->angleDelta();
+
+
+    if(event->delta() > 0) chart->zoom(2);
+    else if(event->delta() < 0) chart->zoom(.5);
+
+    event->accept();
 }
