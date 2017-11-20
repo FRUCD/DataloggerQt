@@ -35,12 +35,13 @@ private:
     int trackingX = 0;
     QSpinBox * spinBox;
     QChartView * chartView;
-    QGridLayout *mainLayout;
+    QGridLayout *gridLayout;
     QLabel * label;
 
     void initializeClassElements();
     void graphSetUp();
     void initializeChartView();
+    void initializeGridLayout();
     void updateGraph(int count);
 };
 

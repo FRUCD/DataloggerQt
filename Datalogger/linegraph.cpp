@@ -25,15 +25,6 @@ void LineGraph::graphSetUp()
     axisY->setRange(0,100);
     chart->addAxis(axisY, Qt::AlignLeft); //axisY setup
     lineSeries->attachAxis(axisY);
-
-    chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    QGridLayout *mainLayout = new QGridLayout;
-       mainLayout->addWidget(chartView, 1, 1);
-       setLayout(mainLayout);
-
-    chartView->setRubberBand(QChartView::HorizontalRubberBand);
-    chartView->lower();
 }
 
 void LineGraph::initializeClassElements()
@@ -44,8 +35,33 @@ void LineGraph::initializeClassElements()
     testInput = new TestInput();
     axisX = new QValueAxis();
     axisY = new QValueAxis();
-    spinBox = new QSpinBox(this);
+
+
+    spinBox = new QSpinBox();
+        spinBox->setMaximum(1000000);
+    label = new QLabel();
+        label->setText("Window X Width:");
+    chartView = new QChartView(chart);
+        initializeChartView();
+    gridLayout = new QGridLayout();
+        initializeGridLayout();
 }
+
+void LineGraph::initializeChartView()
+{
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setRubberBand(QChartView::HorizontalRubberBand);
+    chartView->lower();
+}
+
+void LineGraph::initializeGridLayout()
+{
+    gridLayout->addWidget(chartView, 1, 3);
+    gridLayout->addWidget(spinBox, 1, 2, 1, 1, Qt::AlignTop);
+    gridLayout->addWidget(label, 1, 1, 1, 1, Qt::AlignTop);
+    setLayout(gridLayout);
+}
+
 
 void LineGraph::updateGraph(int count)
 {
@@ -56,7 +72,6 @@ void LineGraph::updateGraph(int count)
 
     if (rangeMin < 0) rangeMin = 0;
 
-    chart->setTitle(QString::number(rangeMin) + "  |  " + QString::number(rangeMax));
     axisX->setRange(rangeMin, rangeMax);
     chart->update();
 }
@@ -71,15 +86,15 @@ void LineGraph::recieveData (QPointF point)
     updateGraph(lineSeries->count());
 }
 
-void LineGraph::wheelEvent(QWheelEvent *event) //Zooms in
+void LineGraph::wheelEvent(QWheelEvent *event) //Zooming in/out
 {
-    if(event->delta() > 0) trackingX -= lineSeries->count() / 10;
-    else if(event->delta() < 0) trackingX += lineSeries->count() / 10;
+    if(event->delta() > 0) trackingX -= lineSeries->count() / 10; //Zoom in
+    else if(event->delta() < 0) trackingX += lineSeries->count() / 10; //Zoom out
 
     event->accept();
 }
 
-void LineGraph::keyPressEvent(QKeyEvent *event)
+void LineGraph::keyPressEvent(QKeyEvent *event) //Detect Keyboard presses
 {
     if (event->key() == Qt::Key_Enter)
         trackingX = spinBox->value();

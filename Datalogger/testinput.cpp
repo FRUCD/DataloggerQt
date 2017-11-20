@@ -4,7 +4,7 @@ TestInput::TestInput(QWidget *parent) : QWidget(parent)
 {
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(tick()));
-    timer->start(5); //Change this number to delay point transmission
+    timer->start(100); //Change this number to delay point transmission
 }
 
 
