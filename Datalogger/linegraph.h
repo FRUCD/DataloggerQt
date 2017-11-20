@@ -3,27 +3,45 @@
 
 #include <QWidget>
 #include <QtCharts>
-#include <QtMath>
 #include <QtGui>
 #include <QWheelEvent>
+#include <QKeyEvent>
+#include "testinput.h"
+
 
 class LineGraph : public QWidget
 {
     Q_OBJECT
 public:
     explicit LineGraph(QWidget *parent = nullptr);
-    QString graphTitle;
-    QChart * chart;
-    void wheelEvent(QWheelEvent *event);
+    void wheelEvent(QWheelEvent *event); //Mousewheel or trackpad scroll
 
 protected:
 
 
 signals:
 
-
 public slots:
+    void recieveData (QPointF point);
+    void keyPressEvent(QKeyEvent *event);
 
+private:
+    QString graphTitle;
+    QChart * chart;
+    QLineSeries *lineSeries;
+    TestInput * testInput;
+    QValueAxis *axisX;
+    QValueAxis *axisY;
+    int trackingX = 0;
+    QSpinBox * spinBox;
+    QChartView * chartView;
+    QGridLayout *mainLayout;
+    QLabel * label;
+
+    void initializeClassElements();
+    void graphSetUp();
+    void initializeChartView();
+    void updateGraph(int count);
 };
 
 #endif // LINEGRAPH_H
