@@ -17,13 +17,13 @@ public:
     void wheelEvent(QWheelEvent *event);
 
 protected:
-    void paintEvent(QPaintEvent *);
 
 
 signals:
 
 
 public slots:
+
 };
 
 #endif // LINEGRAPH_H

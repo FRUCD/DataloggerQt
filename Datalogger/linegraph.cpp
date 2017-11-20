@@ -31,31 +31,28 @@ LineGraph::LineGraph(QWidget *parent) : QWidget(parent)
 
     QValueAxis *axisY = new QValueAxis;
     axisY->setTitleText("Percent Usage");
-    axisY->setRange(0,100);
+    //axisY->setRange(0,100);
     chart->addAxis(axisY, Qt::AlignLeft);
     lineSeries->attachAxis(axisY);
 
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    //chartView->
     QGridLayout *mainLayout = new QGridLayout;
        mainLayout->addWidget(chartView, 1, 1);
        setLayout(mainLayout);
+
+    chartView->setRubberBand(QChartView::HorizontalRubberBand);
 }
 
-void LineGraph::paintEvent(QPaintEvent *)
+void LineGraph::wheelEvent(QWheelEvent *event) //Zooms in
 {
-
-}
-
-void LineGraph::wheelEvent(QWheelEvent *event)
-{
-    QPoint numPixels = event->pixelDelta();
-    QPoint numDegrees = event->angleDelta();
-
-
     if(event->delta() > 0) chart->zoom(2);
     else if(event->delta() < 0) chart->zoom(.5);
 
     event->accept();
+}
+
+void LineGraph::revieveData (QObject * object)
+{
+
 }
