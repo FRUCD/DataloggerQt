@@ -7,6 +7,8 @@
 #include <QWheelEvent>
 #include <QKeyEvent>
 #include "testinput.h"
+#include "scrollingviewtab.h"
+#include "lockedviewtab.h"
 
 
 class LineGraph : public QWidget
@@ -30,13 +32,25 @@ private:
     QChart * chart;
     QLineSeries *lineSeries;
     TestInput * testInput;
+
     QValueAxis *axisX;
     QValueAxis *axisY;
-    int trackingX = 0;
+
     QSpinBox * spinBox;
     QChartView * chartView;
     QGridLayout *gridLayout;
     QLabel * label;
+
+
+    QTabWidget * viewModeTabWidget;
+    int currentTabIndex;
+
+    ScrollingViewTab * scrollingViewTab;
+    LockedViewTab * lockedViewTab;
+    int offSet;
+    int range;
+    int rangeMin;
+    int rangeMax;
 
     void initializeClassElements();
     void graphSetUp();

@@ -27,12 +27,16 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     linegraph.cpp \
-    testinput.cpp
+    testinput.cpp \
+    scrollingviewtab.cpp \
+    lockedviewtab.cpp
 
 HEADERS += \
         mainwindow.h \
     linegraph.h \
-    testinput.h
+    testinput.h \
+    scrollingviewtab.h \
+    lockedviewtab.h
 
 FORMS += \
         mainwindow.ui
