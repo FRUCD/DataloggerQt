@@ -1,0 +1,13 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\linegraph.o
+./debug\testinput.o
+./debug\scrollingviewtab.o
+./debug\lockedviewtab.o
+./debug\moc_mainwindow.o
+./debug\moc_linegraph.o
+./debug\moc_testinput.o
+./debug\moc_scrollingviewtab.o
+./debug\moc_lockedviewtab.o
+);
