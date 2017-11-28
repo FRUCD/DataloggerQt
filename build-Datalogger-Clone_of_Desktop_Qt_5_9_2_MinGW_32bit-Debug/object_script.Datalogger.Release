@@ -5,9 +5,11 @@ INPUT(
 ./release\testinput.o
 ./release\scrollingviewtab.o
 ./release\lockedviewtab.o
+./release\table.o
 ./release\moc_mainwindow.o
 ./release\moc_linegraph.o
 ./release\moc_testinput.o
 ./release\moc_scrollingviewtab.o
 ./release\moc_lockedviewtab.o
+./release\moc_table.o
 );

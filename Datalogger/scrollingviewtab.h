@@ -14,9 +14,9 @@ public:
     int getRange();
 
 signals:
-    void signalApplyButton();
+    void signalApplyPressed();
 public slots:
-    void applyPushButtonPressed();
+    void slotApplyPressed();
 private:
     QLabel * xOffsetLabel;
     QLabel * xRangeLabel;

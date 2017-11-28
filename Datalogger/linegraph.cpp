@@ -29,20 +29,25 @@ void LineGraph::graphSetUp()
 
 void LineGraph::initializeClassElements()
 {
+
     graphTitle = "No Title";
     chart = new QChart();
     lineSeries = new QLineSeries();
     testInput = new TestInput();
+
     axisX = new QValueAxis();
     axisY = new QValueAxis();
+    offSet = 20;
+    range = 40;
+
     scrollingViewTab = new ScrollingViewTab();
     lockedViewTab = new LockedViewTab();
 
     viewModeTabWidget = new QTabWidget();
         viewModeTabWidget->addTab(scrollingViewTab, "Scrolling View");
         viewModeTabWidget->addTab(lockedViewTab, "Locked View");
-        connect(scrollingViewTab, SIGNAL (signalApplyButton()), this, SLOT (keyPressEvent())); //THESE CONNECTS DON'T WORK YET
-        connect(lockedViewTab, SIGNAL (signalApplyButton()), this, SLOT (keyPressEvent())); //SO NO APPLY BUTTON FUNCTIONALITY
+        connect(scrollingViewTab, SIGNAL(signalApplyPressed()), this, SLOT(doApply())); //THESE CONNECTS DON'T WORK YET
+        connect(lockedViewTab, SIGNAL(signalApplyPressed()), this, SLOT(doApply())); //SO NO APPLY BUTTON FUNCTIONALITY
 
     chartView = new QChartView(chart);
         initializeChartView();
@@ -76,7 +81,7 @@ void LineGraph::updateGraph(int count)
         rangeMax = rangeMin + range;
     }
 
-    if (rangeMin < 0) rangeMin = 0;
+    //if (rangeMin < 0) rangeMin = 0;
     if (rangeMin == rangeMax) rangeMax++;
 
     axisX->setRange(rangeMin, rangeMax);
@@ -91,31 +96,30 @@ void LineGraph::recieveData (QPointF point)
     updateGraph(lineSeries->count());
 }
 
-void LineGraph::wheelEvent(QWheelEvent *event) //Zooming in/out
+void LineGraph::wheelEvent(QWheelEvent *event) //Zooming in/out //Not used yet... yet
 {
-    //if(event->delta() > 0) trackingX -= lineSeries->count() / 10; //Zoom in
-   // else if(event->delta() < 0) trackingX += lineSeries->count() / 10; //Zoom out
-
     event->accept();
 }
 
 void LineGraph::keyPressEvent(QKeyEvent *event) //Detect Keyboard presses
 {
-    if (event->key() == Qt::Key_Enter)
+    if (event->key() == Qt::Key_Enter) doApply();
+
+}
+
+void LineGraph::doApply()
+{
+    if (viewModeTabWidget->currentIndex() == 0) //If scrolling view tab is open
     {
-        if (viewModeTabWidget->currentIndex() == 0) //If scrolling view tab is open
-        {
-            currentTabIndex = 0;
-            offSet = scrollingViewTab->getOffset();
-            range = scrollingViewTab->getRange();
+        currentTabIndex = 0;
+        offSet = scrollingViewTab->getOffset();
+        range = scrollingViewTab->getRange();
 
-        }
-        if (viewModeTabWidget->currentIndex() == 1) //If locked view tab is open
-        {
-            currentTabIndex = 1;
-            rangeMin = lockedViewTab->getMinX();
-            rangeMax = lockedViewTab->getMaxX();
-        }
-
+    }
+    if (viewModeTabWidget->currentIndex() == 1) //If locked view tab is open
+    {
+        currentTabIndex = 1;
+        rangeMin = lockedViewTab->getMinX();
+        rangeMax = lockedViewTab->getMaxX();
     }
 }

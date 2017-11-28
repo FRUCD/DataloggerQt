@@ -3,7 +3,6 @@
 ScrollingViewTab::ScrollingViewTab(QWidget *parent) : QWidget(parent)
 {
     intialization();
-    connect (applyPushButton, SLOT (pressed()), this, SIGNAL (signalApplyButton()));
 }
 
 void ScrollingViewTab::intialization()
@@ -13,9 +12,11 @@ void ScrollingViewTab::intialization()
     xRangeLabel = new QLabel();
         initializeLabel(xRangeLabel, "Range:");
     xOffsetSpinBox = new QSpinBox();
-        initializeSpinBox(xOffsetSpinBox, 999999999);
+        initializeSpinBox(xOffsetSpinBox, 999999999); //----------------------Pretty sure this is bad programming, fix later
+        xOffsetSpinBox->setToolTip("The offset from the newest point");
     xRangeSpinBox = new QSpinBox();
-        initializeSpinBox(xRangeSpinBox, 999999999);
+        initializeSpinBox(xRangeSpinBox, 999999999);//----------------------Pretty sure this is bad programming, fix later
+        xRangeSpinBox->setToolTip("The range of the view starting at the offset");
     applyPushButton = new QPushButton();
         initializePushButton(applyPushButton, "Apply");
     layout = new QGridLayout();
@@ -25,6 +26,8 @@ void ScrollingViewTab::intialization()
         layout->addWidget(xRangeSpinBox, 2, 2, 1, 1, Qt::AlignCenter);
         layout->addWidget(applyPushButton, 3, 1, 1, 2, Qt::AlignCenter);
     this->setLayout(layout);
+
+    connect(applyPushButton, SIGNAL (pressed()), this, SLOT(slotApplyPressed()));
 }
 
 void ScrollingViewTab::initializeLabel(QLabel * labelPtr, QString labelTitle)
@@ -52,7 +55,7 @@ int ScrollingViewTab::getRange()
     return xRangeSpinBox->value();
 }
 
-void ScrollingViewTab::applyPushButtonPressed()
+void ScrollingViewTab::slotApplyPressed()
 {
-    emit signalApplyButton();
+    emit signalApplyPressed();
 }

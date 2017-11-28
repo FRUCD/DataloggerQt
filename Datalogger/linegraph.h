@@ -26,6 +26,7 @@ signals:
 public slots:
     void recieveData (QPointF point);
     void keyPressEvent(QKeyEvent *event);
+    void doApply();
 
 private:
     QString graphTitle;

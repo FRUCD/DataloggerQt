@@ -6,6 +6,7 @@
 
 QT       += core gui
 
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets charts
 
 TARGET = Datalogger
@@ -29,14 +30,16 @@ SOURCES += \
     linegraph.cpp \
     testinput.cpp \
     scrollingviewtab.cpp \
-    lockedviewtab.cpp
+    lockedviewtab.cpp \
+    table.cpp
 
 HEADERS += \
         mainwindow.h \
     linegraph.h \
     testinput.h \
     scrollingviewtab.h \
-    lockedviewtab.h
+    lockedviewtab.h \
+    table.h
 
 FORMS += \
         mainwindow.ui

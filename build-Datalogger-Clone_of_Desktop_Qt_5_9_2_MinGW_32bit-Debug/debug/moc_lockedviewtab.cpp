@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_LockedViewTab_t {
     QByteArrayData data[4];
-    char stringdata0[56];
+    char stringdata0[51];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,13 +32,13 @@ struct qt_meta_stringdata_LockedViewTab_t {
 static const qt_meta_stringdata_LockedViewTab_t qt_meta_stringdata_LockedViewTab = {
     {
 QT_MOC_LITERAL(0, 0, 13), // "LockedViewTab"
-QT_MOC_LITERAL(1, 14, 17), // "signalApplyButton"
-QT_MOC_LITERAL(2, 32, 0), // ""
-QT_MOC_LITERAL(3, 33, 22) // "applyPushButtonPressed"
+QT_MOC_LITERAL(1, 14, 18), // "signalApplyPressed"
+QT_MOC_LITERAL(2, 33, 0), // ""
+QT_MOC_LITERAL(3, 34, 16) // "slotApplyPressed"
 
     },
-    "LockedViewTab\0signalApplyButton\0\0"
-    "applyPushButtonPressed"
+    "LockedViewTab\0signalApplyPressed\0\0"
+    "slotApplyPressed"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,8 +76,8 @@ void LockedViewTab::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         LockedViewTab *_t = static_cast<LockedViewTab *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->signalApplyButton(); break;
-        case 1: _t->applyPushButtonPressed(); break;
+        case 0: _t->signalApplyPressed(); break;
+        case 1: _t->slotApplyPressed(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -85,7 +85,7 @@ void LockedViewTab::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (LockedViewTab::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&LockedViewTab::signalApplyButton)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&LockedViewTab::signalApplyPressed)) {
                 *result = 0;
                 return;
             }
@@ -131,7 +131,7 @@ int LockedViewTab::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void LockedViewTab::signalApplyButton()
+void LockedViewTab::signalApplyPressed()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }

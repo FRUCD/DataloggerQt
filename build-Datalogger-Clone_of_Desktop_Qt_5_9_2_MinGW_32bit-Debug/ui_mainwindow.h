@@ -20,7 +20,8 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
-#include "linegraph.h"
+#include <linegraph.h>
+#include "table.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -29,7 +30,8 @@ class Ui_MainWindow
 public:
     QAction *actionExit;
     QWidget *centralWidget;
-    LineGraph *chart1;
+    LineGraph *widget;
+    Table *widget_2;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QToolBar *mainToolBar;
@@ -39,19 +41,24 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1366, 768);
+        MainWindow->resize(1920, 1080);
+        MainWindow->setMinimumSize(QSize(1920, 1080));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QStringLiteral("actionExit"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        chart1 = new LineGraph(centralWidget);
-        chart1->setObjectName(QStringLiteral("chart1"));
-        chart1->setGeometry(QRect(500, 60, 851, 621));
-        chart1->setMinimumSize(QSize(1, 1));
+        widget = new LineGraph(centralWidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(610, 40, 1000, 800));
+        widget->setMinimumSize(QSize(1000, 800));
+        widget_2 = new Table(centralWidget);
+        widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setGeometry(QRect(130, 40, 400, 800));
+        widget_2->setMinimumSize(QSize(400, 800));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1366, 21));
+        menuBar->setGeometry(QRect(0, 0, 1920, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);

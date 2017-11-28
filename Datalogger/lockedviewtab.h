@@ -13,9 +13,9 @@ public:
     int getMaxX();
 
 signals:
-    void signalApplyButton();
+    void signalApplyPressed();
 public slots:
-    void applyPushButtonPressed();
+    void slotApplyPressed();
 private:
     QLabel * xRangeMinLabel;
     QLabel * xRangeMaxLabel;

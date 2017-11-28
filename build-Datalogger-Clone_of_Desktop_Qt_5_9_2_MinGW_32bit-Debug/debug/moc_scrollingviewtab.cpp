@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ScrollingViewTab_t {
     QByteArrayData data[4];
-    char stringdata0[59];
+    char stringdata0[54];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,13 +32,13 @@ struct qt_meta_stringdata_ScrollingViewTab_t {
 static const qt_meta_stringdata_ScrollingViewTab_t qt_meta_stringdata_ScrollingViewTab = {
     {
 QT_MOC_LITERAL(0, 0, 16), // "ScrollingViewTab"
-QT_MOC_LITERAL(1, 17, 17), // "signalApplyButton"
-QT_MOC_LITERAL(2, 35, 0), // ""
-QT_MOC_LITERAL(3, 36, 22) // "applyPushButtonPressed"
+QT_MOC_LITERAL(1, 17, 18), // "signalApplyPressed"
+QT_MOC_LITERAL(2, 36, 0), // ""
+QT_MOC_LITERAL(3, 37, 16) // "slotApplyPressed"
 
     },
-    "ScrollingViewTab\0signalApplyButton\0\0"
-    "applyPushButtonPressed"
+    "ScrollingViewTab\0signalApplyPressed\0"
+    "\0slotApplyPressed"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,8 +76,8 @@ void ScrollingViewTab::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         ScrollingViewTab *_t = static_cast<ScrollingViewTab *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->signalApplyButton(); break;
-        case 1: _t->applyPushButtonPressed(); break;
+        case 0: _t->signalApplyPressed(); break;
+        case 1: _t->slotApplyPressed(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -85,7 +85,7 @@ void ScrollingViewTab::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (ScrollingViewTab::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ScrollingViewTab::signalApplyButton)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ScrollingViewTab::signalApplyPressed)) {
                 *result = 0;
                 return;
             }
@@ -131,7 +131,7 @@ int ScrollingViewTab::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ScrollingViewTab::signalApplyButton()
+void ScrollingViewTab::signalApplyPressed()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }

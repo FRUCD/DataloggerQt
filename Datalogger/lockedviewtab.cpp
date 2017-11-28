@@ -3,7 +3,6 @@
 LockedViewTab::LockedViewTab(QWidget *parent) : QWidget(parent)
 {
     intialization();
-    connect (applyPushButton, SLOT (pressed()), this, SIGNAL (signalApplyButton()));
 }
 
 int LockedViewTab::getMinX()
@@ -23,9 +22,9 @@ void LockedViewTab::intialization()
     xRangeMaxLabel = new QLabel();
         initializeLabel(xRangeMaxLabel, "Maximum X:");
     xRangeMinSpinBox = new QSpinBox();
-        initializeSpinBox(xRangeMinSpinBox, 999999999);
+        initializeSpinBox(xRangeMinSpinBox, 999999999);//----------------------Pretty sure this is bad programming, fix later
     xRangeMaxSpinBox = new QSpinBox();
-        initializeSpinBox(xRangeMaxSpinBox, 999999999);
+        initializeSpinBox(xRangeMaxSpinBox, 999999999);//----------------------Pretty sure this is bad programming, fix later
     applyPushButton = new QPushButton();
         initializePushButton(applyPushButton, "Apply");
     layout = new QGridLayout();
@@ -35,6 +34,8 @@ void LockedViewTab::intialization()
         layout->addWidget(xRangeMaxSpinBox, 2, 2, 1, 1, Qt::AlignCenter);
         layout->addWidget(applyPushButton, 3, 1, 1, 2, Qt::AlignCenter);
     this->setLayout(layout);
+
+    connect(applyPushButton, SIGNAL (pressed()), this, SLOT (slotApplyPressed()));
 }
 
 void LockedViewTab::initializeLabel(QLabel *labelPtr, QString labelTitle)
@@ -52,8 +53,7 @@ void LockedViewTab::initializePushButton(QPushButton *pushButtonPtr, QString pus
     pushButtonPtr->setText(pushButtonTitle);
 }
 
-
-void LockedViewTab::applyPushButtonPressed()
+void LockedViewTab::slotApplyPressed()
 {
-    emit signalApplyButton();
+    emit signalApplyPressed();
 }
